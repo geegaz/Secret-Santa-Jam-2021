@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=2]
+
+[node name="ShipLevel" type="Node2D"]
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 2, 0, -65533, 2, 0, 65535, 1, 0, 0, 1, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0 )
+
+[node name="Walls" type="TileMap" parent="."]
+position = Vector2( 16, 16 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -65538, 0, 0, -65537, 0, 65538, -131072, 0, 65538, -131071, 0, 1, -2, 0, 2, -65536, 0, 0, -65535, 0, 65537, 65534, 0, 65536, 65535, 0, 65538, 0, 0, 65537 )
+
+[node name="Door" parent="." instance=ExtResource( 2 )]
+position = Vector2( -16, 27 )
