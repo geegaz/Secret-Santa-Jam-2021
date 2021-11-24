@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float blink_speed = 4.;
+
+void fragment() {
+	float alpha = texture(TEXTURE, UV).a;
+	COLOR.a = alpha * (sin(TIME * blink_speed)+2.)*0.25;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/blink_speed = 4.0
