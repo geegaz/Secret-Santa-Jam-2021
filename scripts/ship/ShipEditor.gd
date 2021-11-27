@@ -1,21 +1,21 @@
-extends Control
+extends Node2D
 
 export var tile_size: Vector2 = Vector2(32,32)
+
+onready var _Ship = get_parent()
 onready var _Selection = $SelectionSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	connect("gui_input",self,"on_gui_input")
-	connect("mouse_entered",self,"on_mouse_in_editor",[true])
-	connect("mouse_exited",self,"on_mouse_in_editor",[false])
-	_Selection.hide()
+	pass
 
-func on_gui_input(event: InputEvent):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		_Selection.position = (event.position - tile_size/2).snapped(tile_size)
+		_Selection.position = (get_global_mouse_position() - tile_size/2).snapped(tile_size)
 	if event is InputEventMouseButton:
 		if event.pressed:
-			print("Build at %s"%(_Selection.position/tile_size))
-
-func on_mouse_in_editor(inside: bool):
-	_Selection.visible = inside
+			match event.button_index:
+				BUTTON_LEFT:
+					_Ship.build_at(_Selection.position/tile_size)
+				BUTTON_RIGHT:
+					_Ship.destroy_at(_Selection.position/tile_size)

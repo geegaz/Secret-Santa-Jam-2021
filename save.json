@@ -1,0 +1,17 @@
+[
+	{
+		"id": "wood",
+		"category": "resources",
+		"amount": 5
+	},
+	{
+		"id": "scrap",
+		"category": "resources",
+		"amount": 1
+	},
+	{
+		"id": "chair",
+		"category": "props",
+		"amount": 2
+	}
+]

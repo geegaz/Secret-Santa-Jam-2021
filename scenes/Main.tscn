@@ -1,3 +1,64 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/InventoryTest.gd" type="Script" id=1]
+[ext_resource path="res://scenes/UI/MenuItem.tscn" type="PackedScene" id=2]
 
 [node name="Main" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 336.0
+margin_bottom = -10.0
+custom_constants/vseparation = 12
+custom_constants/hseparation = 12
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuItem" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_right = 60.0
+margin_bottom = 60.0
+
+[node name="MenuItem2" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 72.0
+margin_right = 132.0
+margin_bottom = 60.0
+
+[node name="MenuItem3" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 144.0
+margin_right = 204.0
+margin_bottom = 60.0
+
+[node name="MenuItem4" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 216.0
+margin_right = 276.0
+margin_bottom = 60.0
+
+[node name="MenuItem5" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_top = 72.0
+margin_right = 60.0
+margin_bottom = 132.0
+
+[node name="MenuItem6" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 72.0
+margin_top = 72.0
+margin_right = 132.0
+margin_bottom = 132.0
+
+[node name="MenuItem7" parent="Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 144.0
+margin_top = 72.0
+margin_right = 204.0
+margin_bottom = 132.0
