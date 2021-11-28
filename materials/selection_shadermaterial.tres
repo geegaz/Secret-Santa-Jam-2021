@@ -7,8 +7,9 @@ render_mode unshaded;
 uniform float blink_speed = 4.;
 
 void fragment() {
-	float alpha = texture(TEXTURE, UV).a;
-	COLOR.a = alpha * (sin(TIME * blink_speed)+2.)*0.25;
+	vec4 col = texture(TEXTURE, UV);
+	float alpha = col.a * (sin(TIME * blink_speed)+2.)*0.25;
+	COLOR = vec4(col.rgb, alpha);
 }"
 
 [resource]
