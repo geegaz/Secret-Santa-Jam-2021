@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/InventoryTest.gd" type="Script" id=1]
 [ext_resource path="res://scenes/UI/MenuItem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=3]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
+[node name="GridContainer" type="GridContainer" parent="UI/Control"]
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
@@ -24,43 +24,14 @@ margin_right = 336.0
 margin_bottom = -10.0
 custom_constants/vseparation = 12
 custom_constants/hseparation = 12
-columns = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuItem" parent="Control/GridContainer" instance=ExtResource( 2 )]
+[node name="MenuItem" parent="UI/Control/GridContainer" instance=ExtResource( 2 )]
 margin_right = 60.0
 margin_bottom = 60.0
 
-[node name="MenuItem2" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_left = 72.0
-margin_right = 132.0
-margin_bottom = 60.0
-
-[node name="MenuItem3" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_left = 144.0
-margin_right = 204.0
-margin_bottom = 60.0
-
-[node name="MenuItem4" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_left = 216.0
-margin_right = 276.0
-margin_bottom = 60.0
-
-[node name="MenuItem5" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_top = 72.0
-margin_right = 60.0
-margin_bottom = 132.0
-
-[node name="MenuItem6" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_left = 72.0
-margin_top = 72.0
-margin_right = 132.0
-margin_bottom = 132.0
-
-[node name="MenuItem7" parent="Control/GridContainer" instance=ExtResource( 2 )]
-margin_left = 144.0
-margin_top = 72.0
-margin_right = 204.0
-margin_bottom = 132.0
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.25, 0.25 )
