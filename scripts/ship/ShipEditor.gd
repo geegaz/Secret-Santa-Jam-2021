@@ -31,15 +31,15 @@ onready var _Helper: Sprite = $SelectionSprite/HelperSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	# Initialize the levels
+	yield(_Ship,"ready")
 	for i in range(levels_number):
 		var new_level = ShipLevel.instance()
 		new_level.position.y -= i * levels_height
 		
 		levels.append(new_level)
-	yield(_Ship,"ready")
-	for level in levels:
-		_Ship.add_child(level)
+		_Ship.add_child(new_level)
 
 func _process(delta: float) -> void:
 	var dir = Vector2(Input.get_axis("ui_left","ui_right"),Input.get_axis("ui_up","ui_down"))
@@ -164,17 +164,6 @@ func get_block_to_world(block_pos: Vector3) -> Vector2:
 	return world_pos
 
 ################ Utility Functions ################
-
-# Returns the children of this node that are in the given group
-func get_children_in_group(group: String) -> Array:
-	var children_in_group = []
-	# Iterate through all children of this node
-	for child in get_children():
-		if child.is_in_group(group):
-			children_in_group.append(child)
-	
-	return children_in_group
-
 
 func load_dict(data: Dictionary) -> int:
 	

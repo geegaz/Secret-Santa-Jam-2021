@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tilesets/tileset_walls.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/tilesets/tileset_floor.tres" type="TileSet" id=2]
+[ext_resource path="res://scripts/ship/ShipLevelEditor.gd" type="Script" id=3]
+
+[node name="ShipLevel" type="Node2D" groups=["ship_level"]]
+script = ExtResource( 3 )
+
+[node name="Walls" type="TileMap" parent="."]
+position = Vector2( -8, -24 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
+cell_y_sort = true
+show_collision = true
+format = 1
+
+[node name="Roof" type="TileMap" parent="."]
+position = Vector2( 0, -16 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1

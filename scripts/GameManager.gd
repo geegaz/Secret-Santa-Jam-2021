@@ -5,7 +5,7 @@ const SAVE_PATH := "res://save.json"
 ################ Utility Functions ################
 
 # Assumes data is a JSON-compatible object
-func save_data(data, path: String = SAVE_PATH):
+static func save_data(data, path: String = SAVE_PATH):
 	# Prepare json
 	var json := JSON.print(data, "    ")
 	
@@ -16,7 +16,7 @@ func save_data(data, path: String = SAVE_PATH):
 	file.close()
 
 # Returns an object, or null if there was an error
-func load_data(path: String = SAVE_PATH):
+static func load_data(path: String = SAVE_PATH):
 	# open data from file
 	var file := File.new()
 	var error := file.open(path, File.READ)
@@ -33,7 +33,19 @@ func load_data(path: String = SAVE_PATH):
 	file.close()
 	return json_result.result
 
+# Reparents node to new_parent, with the option to keep its trandform in the new_parent
 static func reparent(node: Node, new_parent: Node, keep_transform: bool = true):
+	# TODO: keep_transform
 	var old_parent = node.get_parent()
 	old_parent.remove_child(node)
 	new_parent.add_child(node)
+
+# Returns the children of this node that are in the given group
+static func get_children_in_group(node: Node, group: String) -> Array:
+	var children_in_group = []
+	# Iterate through all children of this node
+	for child in node.get_children():
+		if child.is_in_group(group):
+			children_in_group.append(child)
+	
+	return children_in_group

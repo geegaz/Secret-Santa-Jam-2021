@@ -36,10 +36,11 @@ const WALLS_DIR := {
 }
 
 export var tile_name := "wood"
+export(NodePath) var walls_path: String = "Walls"
+export(NodePath) var roof_path: String = "Roof"
 
-onready var _Ship: Node2D = get_parent()
-onready var _Walls: TileMap = $Walls
-onready var _Roof: TileMap = $Roof
+onready var _Walls: TileMap = get_node_or_null(walls_path)
+onready var _Roof: TileMap = get_node_or_null(roof_path)
 
 var ids := {}
 
