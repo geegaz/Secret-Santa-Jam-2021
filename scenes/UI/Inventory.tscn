@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/UI/MenuItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/UI/item_button_stylebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://assets/sprites/items.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 32, 32 )
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 336.0
+margin_bottom = -10.0
+custom_constants/vseparation = 12
+custom_constants/hseparation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuItem" type="Button" parent="GridContainer" instance=ExtResource( 1 )]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+icon = SubResource( 3 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

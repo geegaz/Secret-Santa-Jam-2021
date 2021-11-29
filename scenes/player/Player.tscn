@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/player/player_placeholder.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/player_placeholder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://scripts/player/Dash.gd" type="Script" id=3]
 
