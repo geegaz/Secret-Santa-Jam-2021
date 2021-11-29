@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/sprites/icons.png" type="Texture" id=1]
+[ext_resource path="res://scenes/map/MapPath.tscn" type="PackedScene" id=2]
+
+[node name="Map" type="Node2D"]
+
+[node name="MapPath" parent="." instance=ExtResource( 2 )]
+
+[node name="BoatSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 5
+vframes = 2
