@@ -24,13 +24,24 @@ margin_right = 336.0
 margin_bottom = -10.0
 custom_constants/vseparation = 12
 custom_constants/hseparation = 12
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MenuItem" parent="UI/Control/GridContainer" instance=ExtResource( 2 )]
-margin_right = 60.0
-margin_bottom = 60.0
+
+[node name="MenuItem2" parent="UI/Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 76.0
+margin_right = 140.0
+
+[node name="MenuItem3" parent="UI/Control/GridContainer" instance=ExtResource( 2 )]
+margin_left = 152.0
+margin_right = 216.0
+
+[node name="MenuItem4" parent="UI/Control/GridContainer" instance=ExtResource( 2 )]
+margin_top = 76.0
+margin_bottom = 140.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
