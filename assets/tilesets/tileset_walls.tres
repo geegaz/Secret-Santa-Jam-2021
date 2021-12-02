@@ -8,7 +8,7 @@
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 128, 0, 64, 96 )
+0/region = Rect2( 0, 0, 64, 96 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 1
 0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 16777392, Vector2( 0, 1 ), 262194, Vector2( 0, 2 ), 48, Vector2( 1, 0 ), 4194456, Vector2( 1, 1 ), 65562, Vector2( 1, 2 ), 56, Vector2( 2, 0 ), 144, Vector2( 2, 1 ), 18, Vector2( 2, 2 ), 24, Vector2( 3, 0 ), 146, Vector2( 3, 1 ), 186 ]
@@ -31,7 +31,7 @@
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 192, 0, 80, 96 )
+1/region = Rect2( 64, 0, 64, 96 )
 1/tile_mode = 1
 1/autotile/bitmask_mode = 1
 1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 16777392, Vector2( 0, 1 ), 262194, Vector2( 0, 2 ), 48, Vector2( 1, 0 ), 4194456, Vector2( 1, 1 ), 65562, Vector2( 1, 2 ), 56, Vector2( 2, 0 ), 144, Vector2( 2, 1 ), 18, Vector2( 2, 2 ), 24, Vector2( 3, 0 ), 146, Vector2( 3, 1 ), 186 ]
