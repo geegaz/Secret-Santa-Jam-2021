@@ -12,8 +12,8 @@ script = ExtResource( 3 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
 
-[node name="Map" parent="." instance=ExtResource( 1 )]
-
 [node name="TileMap" type="TileMap" parent="."]
 cell_size = Vector2( 32, 32 )
 format = 1
+
+[node name="Map" parent="." instance=ExtResource( 1 )]

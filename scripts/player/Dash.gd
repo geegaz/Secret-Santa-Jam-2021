@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 export var dash_power: float = 300
 export var dash_cooldown: float = 0.5

@@ -17,5 +17,5 @@ texture = ExtResource( 1 )
 position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
-[node name="Dash" type="Node" parent="."]
+[node name="Dash" type="Node2D" parent="."]
 script = ExtResource( 3 )
