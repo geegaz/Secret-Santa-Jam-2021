@@ -4,9 +4,14 @@
 code = "shader_type canvas_item;
 render_mode unshaded;
 
-uniform float blink_speed = 4.;
+uniform bool active = true;
+uniform float blink_speed = 2.;
 
 void fragment() {
+	if (!active) {
+		discard;
+		return;
+	}
 	vec4 col = texture(TEXTURE, UV);
 	float alpha = col.a * (sin(TIME * blink_speed)+2.)*0.25;
 	COLOR = vec4(col.rgb, alpha);
@@ -14,4 +19,5 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/blink_speed = 4.0
+shader_param/active = true
+shader_param/blink_speed = 2.0
