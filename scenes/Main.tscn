@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sprites/characters/Sophie.png" type="Texture" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/characters/Dae-sun.png" type="Texture" id=4]
 [ext_resource path="res://assets/tilesets/tileset_world.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/tilesets/tileset_walls.tres" type="TileSet" id=6]
+[ext_resource path="res://scenes/UI/DialogueBox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -19,6 +20,8 @@ region = Rect2( 0, 64, 16, 32 )
 script = ExtResource( 3 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" parent="UI" instance=ExtResource( 7 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
