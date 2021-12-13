@@ -1,11 +1,52 @@
 extends TileSet
 tool
 
+export var generate: bool = false setget set_generate
+var tile_connections: Dictionary = {
+	"grass": [
+		"transition",
+		
+		"floor",
+		"metal",
+		"tiles",
+		"planks",
+		"stairs"
+	],
+	"transition": [
+		"air",
+		"grass",
+		
+		"floor",
+		"metal",
+		"tiles",
+		"planks",
+		"stairs"
+	],
+	"sand": [
+		"transition",
+		
+		"floor",
+		"metal",
+		"tiles",
+		"planks",
+		"stairs"
+	]
+	
+}
+var tiles_mapping: Dictionary
+
 func _is_tile_bound(drawn_id, neighbor_id):
-	# Logic: 
-	# - a "connecting" tile will connect with any other "connecting" tile
-	# - a "sticking" tile will force "connecting" tiles to connect with it
-	return (
-		(drawn_id == 1 and neighbor_id == 2) or
-		(drawn_id == 2 and neighbor_id == 0)
-	)
+	return (tiles_mapping.has(drawn_id) and neighbor_id in tiles_mapping[drawn_id])
+
+func set_generate(value: bool):
+	var new_mapping: = {}
+	for tile in tile_connections:
+		var id: int = find_tile_by_name(tile)
+		for connect_tile in tile_connections[tile]:
+			var connect_id: int = find_tile_by_name(connect_tile)
+			if new_mapping.has(id):
+				new_mapping[id].append(connect_id)
+			else:
+				new_mapping[id] = [connect_id]
+	tiles_mapping = new_mapping
+	print("generated %s"%tiles_mapping)

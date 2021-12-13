@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/materials/ship_material.tres" type="Material" id=1]
 [ext_resource path="res://scripts/map/MapBoat.gd" type="Script" id=2]
-[ext_resource path="res://scenes/map/BoatWheels.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/map/ShipWheels.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/materials/outline_material.tres" type="Material" id=4]
 [ext_resource path="res://assets/models/ship/wheel.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/models/ship/wheels_base.obj" type="ArrayMesh" id=6]
@@ -17,7 +17,7 @@ viewport_path = NodePath("Viewport")
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="MapBoat" type="KinematicBody2D"]
+[node name="Ship" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -66,6 +66,6 @@ texture = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="BoatWheels" parent="." instance=ExtResource( 3 )]
+[node name="ShipWheels" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -8 )
 wheels_base_path = NodePath("../Viewport/BoatMesh/WheelsBase")

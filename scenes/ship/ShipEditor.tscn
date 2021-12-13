@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/sprites/selection.png" type="Texture" id=3]
 [ext_resource path="res://scenes/ship/ShipLevelEditable.tscn" type="PackedScene" id=4]
 
-
 [node name="ShipEditor" type="Node2D"]
 z_index = 10
 script = ExtResource( 1 )
