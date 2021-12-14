@@ -11,9 +11,15 @@ var cooldown_time: float = 0
 var velocity: Vector2
 var dir: Vector2
 
+onready var _Animation: AnimationTree = $AnimationTree 
+onready var _PlayerSprite: Sprite = $PlayerSprite
+
 func _process(delta: float) -> void:
 	# Get input direction
 	dir = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	if dir.length_squared() > 0:
+		_Animation.set("parameters/AnimDirection/blend_position", dir)
+		_PlayerSprite.flip_h = dir.x < 0
 	# Reduce dash cooldown
 	cooldown_time = clamp(cooldown_time - delta, 0, dash_cooldown)
 
