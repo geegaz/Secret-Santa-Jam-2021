@@ -2,7 +2,7 @@ extends Node
 
 const SAVE_PATH := "res://save.json"
 
-
+var screenshake: bool = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_fullscreen"):

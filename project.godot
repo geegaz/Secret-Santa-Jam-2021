@@ -14,26 +14,50 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/data/Block.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://addons/simple_nodes/Enemy.gd"
+}, {
+"base": "LabelRange",
+"class": "HealthBar",
+"language": "GDScript",
+"path": "res://addons/simple_nodes/HealthBar.gd"
+}, {
 "base": "Reference",
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/data/Item.gd"
 }, {
+"base": "Range",
+"class": "LabelRange",
+"language": "GDScript",
+"path": "res://addons/simple_nodes/LabelRange.gd"
+}, {
 "base": "Reference",
 "class": "PolyHelper",
 "language": "GDScript",
-"path": "res://scripts/tools/PolyHelper.gd"
+"path": "res://addons/simple_tools/PolyHelper.gd"
 }, {
 "base": "Reference",
 "class": "Prop",
 "language": "GDScript",
 "path": "res://scripts/data/Prop.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "RandomStreamPlayer",
+"language": "GDScript",
+"path": "res://addons/simple_nodes/RandomStreamPlayer.gd"
 } ]
 _global_script_class_icons={
 "Block": "",
+"Enemy": "",
+"HealthBar": "res://addons/simple_nodes/HealthBar.svg",
 "Item": "",
+"LabelRange": "",
 "PolyHelper": "",
-"Prop": ""
+"Prop": "",
+"RandomStreamPlayer": "res://addons/simple_nodes/RandomStreamPlayer.svg"
 }
 
 [application]
@@ -49,8 +73,10 @@ GameManager="*res://scripts/GameManager.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=384
+window/size/height=216
+window/size/test_width=960
+window/size/test_height=540
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
@@ -131,6 +157,12 @@ ui_fullscreen={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
 
 [physics]
 

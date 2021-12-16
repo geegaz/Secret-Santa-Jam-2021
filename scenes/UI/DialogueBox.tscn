@@ -1,51 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/sprites/characters/Dae-sun.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI/panel_stylebox.tres" type="StyleBox" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 80, 96 )
 
-[node name="DialogueBox" type="Control"]
+[node name="DialogueBox" type="Panel"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -240.0
-theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -640.0
-margin_top = -8.0
-margin_right = 640.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Dialogue" type="Label" parent="Panel"]
-anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = 16.0
-margin_right = 960.0
-margin_bottom = -16.0
+margin_top = -64.0
+margin_right = -16.0
+theme = ExtResource( 1 )
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = -88.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "There's fuckin' nothing here. Why would you be here yet ?
-And what the hell are you ?"
+text = "kazuefguzyefgzuyefgefgefguyzfuzefguzyefguyzefgzyfuzyfgeuyztfguzegfuzygUYZQEGFUYKZQGEREKSYHGRRJHDRSGUKRQHGUYyjefgzefghhzsyetfgyjsetfgyjeg"
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CharacterImage" type="TextureRect" parent="Panel"]
+[node name="CharacterImage" type="TextureRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -320.0
-margin_top = -128.0
+margin_left = -88.0
+margin_top = -40.0
 texture = SubResource( 1 )
 expand = true
 stretch_mode = 6
@@ -53,11 +47,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CharacterName" type="Label" parent="Panel"]
-margin_top = -64.0
-margin_right = 40.0
-margin_bottom = -16.0
-custom_constants/shadow_offset_y = 4
+[node name="CharacterName" type="Label" parent="."]
+margin_left = 8.0
+margin_top = -16.0
+margin_right = 69.0
+custom_constants/shadow_offset_y = 1
 text = "Dae-sun"
 __meta__ = {
 "_edit_use_anchors_": false
