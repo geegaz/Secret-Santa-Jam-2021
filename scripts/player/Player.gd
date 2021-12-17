@@ -18,9 +18,11 @@ var invulnerable_time: float = 0
 
 var velocity: Vector2
 var dir: Vector2
+var last_dir: Vector2
 
 onready var _AnimTree: AnimationTree = $AnimationTree
 onready var _Animation: AnimationPlayer = $AnimationPlayer
+onready var _StateMachine: AnimationNodeStateMachinePlayback = _AnimTree["parameters/playback"]
 onready var _PlayerSprite: Sprite = $PlayerSprite
 var _HealthBar: HealthBar
 
@@ -33,9 +35,15 @@ func _ready():
 func _process(delta: float) -> void:
 	# Get input direction
 	dir = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	
+	var state: String = _StateMachine.get_current_node()
+	_AnimTree.set("parameters/%s/blend_position"%state, last_dir)
 	if dir.length_squared() > 0:
-		_AnimTree.set("parameters/Idle/blend_position", dir)
+		last_dir = dir
 		_PlayerSprite.flip_h = dir.x < 0
+		_StateMachine.travel("run")
+	else:
+		_StateMachine.travel("idle")
 	# Reduce invulnerability time
 	invulnerable_time = clamp(invulnerable_time - delta, 0, INF)
 
