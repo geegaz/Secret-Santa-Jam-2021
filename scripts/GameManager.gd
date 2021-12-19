@@ -1,23 +1,35 @@
 extends Node
 
+signal inventory_changed(new_inventory)
+
 enum Bonus {
 	CANNON,
 	WHEELS
+}
+enum Items {
+	WOOD,
+	METAL,
+	SLIME
 }
 
 const MAP: String = "res://scenes/Map.tscn"
 const ISLANDS: Dictionary = {
 	"start": "res://scenes/Main.tscn"
 }
-
-# Save variables
 const SAVE_PATH := "res://save.json"
 
-var screenshake: bool = true
+# Save variables
 var unlocked_bonuses: Array = []
 var player_island: String = "start"
-var player_position: Vector2
 var ship_position: Vector2
+var inventory: Dictionary = {
+	Items.WOOD: 0,
+	Items.METAL: 0,
+	Items.SLIME: 0
+} setget set_inventory
+
+# Options variables
+var screenshake: bool = true
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_fullscreen"):
@@ -26,13 +38,17 @@ func _input(event: InputEvent) -> void:
 ################ Manager Functions ################
 
 func goto_map():
-	var player = get_tree().get_nodes_in_group("player").front()
-	if player:
-		player_position = player.position
-	
+	get_tree().change_scene(MAP)
 
-func goto_island():
-	pass
+func goto_island(island: String):
+	var ship = get_tree().get_nodes_in_group("player_ship").front()
+	if ship:
+		ship_position = ship.position
+	get_tree().change_scene(ISLANDS.get(island))
+
+func set_inventory(value: Dictionary):
+	inventory = value
+	emit_signal("inventory_changed", value)
 
 ################ Utility Functions ################
 

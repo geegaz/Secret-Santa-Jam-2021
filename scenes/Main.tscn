@@ -13,7 +13,7 @@
 [ext_resource path="res://scenes/player/PlayerCamera.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/tilesets/tileset_overlay.tres" type="TileSet" id=12]
 [ext_resource path="res://scenes/enemies/Slime.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/ship/ShipTrigger.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/UI/ItemList.tscn" type="PackedScene" id=15]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -35,6 +35,13 @@ visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 164.0
+margin_bottom = 28.0
+
+[node name="ItemList" parent="UI" instance=ExtResource( 15 )]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = 44.0
+margin_bottom = 88.0
 
 [node name="World" type="Node2D" parent="."]
 
@@ -89,9 +96,6 @@ position = Vector2( 536, 312 )
 
 [node name="Slime3" parent="World/Walls" instance=ExtResource( 13 )]
 position = Vector2( 584, 296 )
-
-[node name="ShipTrigger" parent="World/Walls" instance=ExtResource( 14 )]
-position = Vector2( -16, -16 )
 
 [node name="Collisions" type="TileMap" parent="World"]
 visible = false

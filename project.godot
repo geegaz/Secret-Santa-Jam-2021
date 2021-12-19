@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/data/Block.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://addons/simple_nodes/Enemy.gd"
-}, {
 "base": "LabelRange",
 "class": "HealthBar",
 "language": "GDScript",
@@ -57,7 +52,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AdaptiveInputHint": "",
 "Block": "",
-"Enemy": "",
 "HealthBar": "res://addons/simple_nodes/HealthBar.svg",
 "Item": "",
 "LabelRange": "",

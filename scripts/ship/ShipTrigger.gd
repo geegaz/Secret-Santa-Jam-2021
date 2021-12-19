@@ -22,7 +22,7 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("control_interact") and player_inside_ship:
-		get_tree().change_scene(GameManager.MAP)
+		GameManager.goto_map()
 
 func _on_body_inside_ship(body, inside: bool):
 	if body.is_in_group("player"):

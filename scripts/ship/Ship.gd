@@ -15,7 +15,12 @@ onready var _Animation: AnimationPlayer = $AnimationPlayer
 onready var _SplashParticles: Particles2D = $SplashParticles
 
 # Wheels variables
-export var has_wheels: bool = true
+export(NodePath) var fuel_bar_path: String
+onready var _FuelBar: TextureProgress = get_node_or_null(fuel_bar_path)
+
+export var has_wheels: bool = false
+export var max_fuel_time: float = 3.0
+var fuel_time: float = 0
 var wheels_active: bool = false
 var wheels_speed: float = 0
 onready var _SmokeBase: Node2D = $SmokeBase
@@ -39,6 +44,9 @@ func _ready() -> void:
 	if _HealthBar:
 		_HealthBar.connect("death",self,"die")
 		_HealthBar.show()
+	
+	if GameManager.ship_position:
+		position = GameManager.ship_position
 
 func _process(delta: float) -> void:
 	_BoatMesh.rotation.y = velocity.angle()
@@ -58,11 +66,20 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	wheels_active = (dir.length() > 0) and has_wheels and Input.is_action_pressed("ui_accept")
 	
+	wheels_active = false
 	var target_speed := speed
-	if wheels_active:
-		target_speed = max_speed
+	if has_wheels and dir.length() > 0 and Input.is_action_pressed("control_dash"):
+		if fuel_time > 0:
+			wheels_active = true
+			target_speed = max_speed
+			fuel_time -= delta
+		elif GameManager.inventory[GameManager.Items.WOOD] > 0:
+			fuel_time = max_fuel_time
+			GameManager.inventory[GameManager.Items.WOOD] -= 1
+		
+		if _FuelBar:
+			_FuelBar.value = _FuelBar.max_value * (fuel_time/max_fuel_time)
 	
 	velocity = lerp(velocity, dir * target_speed, delta * smooth_speed)
 	move_and_slide(velocity)

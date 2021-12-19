@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/simple_nodes/HealthBar.gd" type="Script" id=1]
 [ext_resource path="res://default_theme.tres" type="Theme" id=2]
@@ -16,6 +16,18 @@ region = Rect2( 32, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 16, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 16, 16, 8 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 16, 16, 8 )
 
 [node name="ShipHealth" type="Panel"]
 margin_right = 160.0
@@ -59,6 +71,24 @@ margin_right = 16.0
 text = "10"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipFuel" type="TextureProgress" parent="."]
+margin_left = 36.0
+margin_top = 28.0
+margin_right = 136.0
+margin_bottom = 36.0
+value = 50.0
+texture_under = SubResource( 4 )
+texture_over = SubResource( 5 )
+texture_progress = SubResource( 6 )
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 2
+stretch_margin_right = 3
+stretch_margin_bottom = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
