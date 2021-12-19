@@ -1,12 +1,38 @@
 extends Node
 
+enum Bonus {
+	CANNON,
+	WHEELS
+}
+
+const MAP: String = "res://scenes/Map.tscn"
+const ISLANDS: Dictionary = {
+	"start": "res://scenes/Main.tscn"
+}
+
+# Save variables
 const SAVE_PATH := "res://save.json"
 
 var screenshake: bool = true
+var unlocked_bonuses: Array = []
+var player_island: String = "start"
+var player_position: Vector2
+var ship_position: Vector2
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
+
+################ Manager Functions ################
+
+func goto_map():
+	var player = get_tree().get_nodes_in_group("player").front()
+	if player:
+		player_position = player.position
+	
+
+func goto_island():
+	pass
 
 ################ Utility Functions ################
 

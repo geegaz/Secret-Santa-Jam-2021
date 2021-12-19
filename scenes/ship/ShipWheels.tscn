@@ -1,4 +1,11 @@
-extends Node2D
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/materials/boat_smoke_particles.tres" type="Material" id=1]
+[ext_resource path="res://assets/sprites/smoke_particles.png" type="Texture" id=3]
+[ext_resource path="res://assets/materials/particle_animation_material.tres" type="Material" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
 
 export var active: bool = true
 export var multiplier: float = 2
@@ -22,7 +29,7 @@ func _process(delta: float) -> void:
 	rotation = _MapBoat.velocity.angle()
 
 func _physics_process(delta: float) -> void:
-	if active and Input.is_action_pressed("ui_select") and _MapBoat.dir.length() > 0:
+	if active and Input.is_action_pressed(\"ui_select\") and _MapBoat.dir.length() > 0:
 		_MapBoat.speed_multiplier = multiplier
 		wheels_speed = multiplier * 2
 		_Particles.emitting = true
@@ -34,3 +41,15 @@ func _physics_process(delta: float) -> void:
 func set_active(value: bool):
 	active = value
 	_WheelsBase.visible = value
+"
+
+[node name="BoatWheels" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = ExtResource( 4 )
+position = Vector2( -8, 0 )
+amount = 20
+local_coords = false
+process_material = ExtResource( 1 )
+texture = ExtResource( 3 )

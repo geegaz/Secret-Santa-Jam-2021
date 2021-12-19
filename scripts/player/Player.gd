@@ -1,18 +1,24 @@
 extends KinematicBody2D
 
 export(NodePath) var health_bar_path: String
+onready var _HealthBar: HealthBar = get_node_or_null(health_bar_path)
 
+# Movement variables
+var can_move: bool = true
 export var max_speed: float = 60 # px/s
 export var smooth_speed: float = 12 # 1/x s to max speed
+
+# Dash variables
 export var dash_power: float = 300
-
 export var dash_invul: float = 0.25
-export var damage_invul: float = 0.8
-
-export var can_move: bool = true
-
 var can_dash: bool = true
+onready var _DashTimer: Timer = $DashTimer
+
+# Damage variables
+export var damage_knockback: float = 200
+export var damage_invul: float = 1.0
 var can_damage: bool = true
+onready var _DamageTimer: Timer = $DamageTimer
 
 var invulnerable_time: float = 0
 
@@ -24,10 +30,8 @@ onready var _AnimTree: AnimationTree = $AnimationTree
 onready var _Animation: AnimationPlayer = $AnimationPlayer
 onready var _StateMachine: AnimationNodeStateMachinePlayback = _AnimTree["parameters/playback"]
 onready var _PlayerSprite: Sprite = $PlayerSprite
-var _HealthBar: HealthBar
 
 func _ready():
-	_HealthBar = get_tree().get_nodes_in_group("player_health").front()
 	if _HealthBar:
 		_HealthBar.connect("death",self,"die")
 		_HealthBar.show()
@@ -51,9 +55,7 @@ func _physics_process(delta: float) -> void:
 	# Apply velocity
 	if can_move:
 		velocity = move_and_slide(lerp(velocity, dir * max_speed, delta * smooth_speed))
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_select"):
+	if Input.is_action_pressed("ui_select") and can_dash:
 		dash()
 
 func dash():
@@ -65,9 +67,8 @@ func dash():
 	
 	can_dash = false
 	
-	var dash_timer = $DashTimer
-	dash_timer.start()
-	yield(dash_timer, "timeout")
+	_DashTimer.start()
+	yield(_DashTimer, "timeout")
 	
 	can_dash = true
 
@@ -76,7 +77,7 @@ func hurt(value: float, dir: Vector2 = Vector2.ZERO):
 		return
 	
 	invulnerable_time += damage_invul
-	velocity += dir*dash_power
+	velocity = dir*damage_knockback
 	if _HealthBar:
 		_HealthBar.remove_health(value)
 	
@@ -84,9 +85,8 @@ func hurt(value: float, dir: Vector2 = Vector2.ZERO):
 	_Animation.play("hurt")
 	can_damage = false
 	
-	var damage_timer = $DamageTimer
-	damage_timer.start()
-	yield(damage_timer, "timeout")
+	_DamageTimer.start()
+	yield(_DamageTimer, "timeout")
 	
 	can_damage = true
 	_Animation.play("RESET")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/simple_nodes/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/sprites/UI.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/metal_panel_stylebox.tres" type="StyleBox" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[node name="ShipHealth" type="Panel"]
+margin_right = 160.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 72, 48 )
+theme = ExtResource( 2 )
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="." groups=["player_health"]]
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = -5.0
+value = 50.0
+texture_under = SubResource( 1 )
+texture_over = SubResource( 2 )
+texture_progress = SubResource( 3 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 6
+stretch_margin_right = 8
+stretch_margin_bottom = 4
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_path = NodePath("Label")
+max_health = 10.0
+current_health = 10.0
+always_visible = true
+
+[node name="Label" type="Label" parent="TextureProgress"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 16.0
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

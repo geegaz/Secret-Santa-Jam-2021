@@ -1,0 +1,121 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/materials/water_ripples_particles.tres" type="Material" id=1]
+[ext_resource path="res://assets/materials/ship_material.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/particle_animation_material.tres" type="Material" id=3]
+[ext_resource path="res://assets/models/ship/ship.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://assets/models/ship/wheels_base.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://assets/models/ship/wheel.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/materials/boat_smoke_particles.tres" type="Material" id=7]
+[ext_resource path="res://assets/materials/outline_material.tres" type="Material" id=8]
+[ext_resource path="res://assets/sprites/water_ripples_particles.png" type="Texture" id=9]
+[ext_resource path="res://scripts/ship/Ship.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/smoke_particles.png" type="Texture" id=11]
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BoatSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hurt"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BoatSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Ship" type="KinematicBody2D" groups=["player_ship"]]
+script = ExtResource( 10 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 32, 32 )
+transparent_bg = true
+
+[node name="BoatMesh" type="MeshInstance" parent="Viewport"]
+material_override = ExtResource( 2 )
+mesh = ExtResource( 4 )
+material/0 = null
+
+[node name="WheelsBase" type="MeshInstance" parent="Viewport/BoatMesh"]
+material_override = ExtResource( 2 )
+mesh = ExtResource( 5 )
+material/0 = null
+
+[node name="WheelLeft" type="MeshInstance" parent="Viewport/BoatMesh/WheelsBase"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.75 )
+material_override = ExtResource( 2 )
+mesh = ExtResource( 6 )
+material/0 = null
+
+[node name="WheelRight" type="MeshInstance" parent="Viewport/BoatMesh/WheelsBase"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.75 )
+material_override = ExtResource( 2 )
+mesh = ExtResource( 6 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 2, -2 )
+projection = 1
+size = 3.0
+
+[node name="SplashParticles" type="Particles2D" parent="."]
+material = ExtResource( 3 )
+z_index = -1
+emitting = false
+randomness = 0.5
+local_coords = false
+process_material = ExtResource( 1 )
+texture = ExtResource( 9 )
+
+[node name="SmokeBase" type="Node2D" parent="."]
+position = Vector2( 0, -8 )
+
+[node name="SmokeParticles" type="Particles2D" parent="SmokeBase"]
+material = ExtResource( 3 )
+position = Vector2( -8, -2 )
+z_index = 1
+emitting = false
+amount = 20
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 11 )
+
+[node name="BoatSprite" type="Sprite" parent="."]
+material = ExtResource( 8 )
+texture = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/hurt = SubResource( 4 )
+
+[node name="DamageTimer" type="Timer" parent="."]
+one_shot = true

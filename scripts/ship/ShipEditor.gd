@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export var ShipLevel: PackedScene = preload("res://scenes/ship/ShipLevel.tscn")
+export var ShipLevel: PackedScene
 
 export var levels_number: int = 3;
 export var levels_height: int = 16; # px

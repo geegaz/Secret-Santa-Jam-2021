@@ -2,7 +2,7 @@
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/sprites/characters/Dae-sun.png" type="Texture" id=2]
-[ext_resource path="res://assets/UI/panel_stylebox.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/UI/wood_panel_stylebox.tres" type="StyleBox" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
