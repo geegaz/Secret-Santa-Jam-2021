@@ -47,6 +47,8 @@ func _ready() -> void:
 	
 	if GameManager.ship_position:
 		position = GameManager.ship_position
+	
+	update_fuel_bar()
 
 func _process(delta: float) -> void:
 	_BoatMesh.rotation.y = velocity.angle()
@@ -78,8 +80,7 @@ func _physics_process(delta: float) -> void:
 			fuel_time = max_fuel_time
 			GameManager.inventory[GameManager.Items.WOOD] -= 1
 		
-		if _FuelBar:
-			_FuelBar.value = _FuelBar.max_value * (fuel_time/max_fuel_time)
+		update_fuel_bar()
 	
 	velocity = lerp(velocity, dir * target_speed, delta * smooth_speed)
 	move_and_slide(velocity)
@@ -89,6 +90,10 @@ func set_wheels_active(active: bool):
 	_WheelsBase.visible = active
 	_SmokeBase.visible = active
 	_SmokeParticles.emitting = active
+
+func update_fuel_bar():
+	if _FuelBar:
+		_FuelBar.value = _FuelBar.max_value * (fuel_time/max_fuel_time)
 
 func hurt(value: float, dir: Vector2 = Vector2.ZERO):
 	if !can_damage or invulnerable_time > 0:

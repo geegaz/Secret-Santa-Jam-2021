@@ -62,6 +62,9 @@ region = Rect2( 144, 0, 16, 16 )
 
 [node name="ShipWorld" type="Node2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Floor" type="Sprite" parent="."]
 texture = SubResource( 1 )

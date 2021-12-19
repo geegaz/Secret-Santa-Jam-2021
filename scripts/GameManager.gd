@@ -23,7 +23,7 @@ var unlocked_bonuses: Array = []
 var player_island: String = "start"
 var ship_position: Vector2
 var inventory: Dictionary = {
-	Items.WOOD: 0,
+	Items.WOOD: 10,
 	Items.METAL: 0,
 	Items.SLIME: 0
 } setget set_inventory
