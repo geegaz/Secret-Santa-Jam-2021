@@ -38,7 +38,7 @@ var invulnerable_time: float = 0
 
 func _ready() -> void:
 	if GameManager.unlocked_bonuses.has(GameManager.Bonus.WHEELS):
-		has_wheels = false
+		has_wheels = true
 	set_wheels_active(has_wheels)
 	
 	if _HealthBar:

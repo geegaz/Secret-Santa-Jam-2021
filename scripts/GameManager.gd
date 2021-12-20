@@ -19,7 +19,9 @@ const ISLANDS: Dictionary = {
 const SAVE_PATH := "res://save.json"
 
 # Save variables
-var unlocked_bonuses: Array = []
+var unlocked_bonuses: Array = [
+	Bonus.WHEELS
+]
 var player_island: String = "start"
 var ship_position: Vector2
 var inventory: Dictionary = {
