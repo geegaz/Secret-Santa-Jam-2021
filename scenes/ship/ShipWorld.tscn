@@ -146,3 +146,5 @@ position = Vector2( 0, -16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipTrigger"]
 z_as_relative = false
 polygon = PoolVector2Array( 88, -24, -56, -24, -88, 8, -88, 24, -56, 56, 88, 56 )
+
+[connection signal="trigger" from="ShipTrigger" to="." method="_on_ShipTrigger_trigger"]

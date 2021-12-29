@@ -61,10 +61,10 @@ func _physics_process(delta: float) -> void:
 	# Apply velocity
 	if can_move:
 		velocity = move_and_slide(lerp(velocity, dir * max_speed, delta * smooth_speed))
+	if Input.is_action_pressed("control_dash") and can_dash:
+		dash()
 
 func _input(event):
-	if event.is_action_pressed("control_dash") and can_dash:
-		dash()
 	if event.is_action_pressed("control_attack") and can_attack:
 		attack()
 

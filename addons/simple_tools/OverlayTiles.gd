@@ -49,4 +49,3 @@ func set_generate(value: bool):
 			else:
 				new_mapping[id] = [connect_id]
 	tiles_mapping = new_mapping
-	print("generated %s"%tiles_mapping)

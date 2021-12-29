@@ -18,9 +18,8 @@ onready var _SplashParticles: Particles2D = $SplashParticles
 export(NodePath) var fuel_bar_path: String
 onready var _FuelBar: TextureProgress = get_node_or_null(fuel_bar_path)
 
-export var has_wheels: bool = false
 export var max_fuel_time: float = 3.0
-var fuel_time: float = 0
+var fuel_time: float = max_fuel_time
 var wheels_active: bool = false
 var wheels_speed: float = 0
 onready var _SmokeBase: Node2D = $SmokeBase
@@ -37,9 +36,7 @@ onready var _DamageTimer: Timer = $DamageTimer
 var invulnerable_time: float = 0
 
 func _ready() -> void:
-	if GameManager.unlocked_bonuses.has(GameManager.Bonus.WHEELS):
-		has_wheels = true
-	set_wheels_active(has_wheels)
+	set_wheels_active(GameManager.unlocked_bonuses.has(GameManager.Bonus.WHEELS))
 	
 	if _HealthBar:
 		_HealthBar.connect("death",self,"die")
@@ -51,10 +48,13 @@ func _ready() -> void:
 	update_fuel_bar()
 
 func _process(delta: float) -> void:
-	_BoatMesh.rotation.y = velocity.angle()
-	_SplashParticles.emitting = dir.length() > 0
+	if !is_zero_approx(velocity.length()):
+		_BoatMesh.rotation.y = velocity.angle()
+		_SplashParticles.emitting = true
+	else:
+		_SplashParticles.emitting = false
 	
-	if has_wheels:
+	if _SmokeBase.visible:
 		# Smoke particles
 		_SmokeBase.rotation = velocity.angle()
 		_SmokeParticles.emitting = wheels_active
@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	
 	wheels_active = false
 	var target_speed := speed
-	if has_wheels and dir.length() > 0 and Input.is_action_pressed("control_dash"):
+	if _WheelsBase.visible and dir.length() > 0 and Input.is_action_pressed("control_dash"):
 		if fuel_time > 0:
 			wheels_active = true
 			target_speed = max_speed
@@ -86,7 +86,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide(velocity)
 
 func set_wheels_active(active: bool):
-	has_wheels = active
 	_WheelsBase.visible = active
 	_SmokeBase.visible = active
 	_SmokeParticles.emitting = active

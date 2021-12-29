@@ -2,6 +2,11 @@ extends Node
 
 signal inventory_changed(new_inventory)
 
+enum {
+	CONTROL_MODE_KEYBOARD,
+	CONTROL_MODE_CONTROLLER
+}
+
 enum Bonus {
 	CANNON,
 	WHEELS
@@ -12,15 +17,19 @@ enum Items {
 	SLIME
 }
 
-const MAP: String = "res://scenes/Map.tscn"
+const MAP: String = "res://scenes/map/Map.tscn"
 const ISLANDS: Dictionary = {
 	"start": "res://scenes/Main.tscn"
 }
 const SAVE_PATH := "res://save.json"
 
+
 # Save variables
 var unlocked_bonuses: Array = [
 	Bonus.WHEELS
+]
+var explored_islands: Array = [
+	
 ]
 var player_island: String = "start"
 var ship_position: Vector2
@@ -30,8 +39,12 @@ var inventory: Dictionary = {
 	Items.SLIME: 0
 } setget set_inventory
 
+
 # Options variables
 var screenshake: bool = true
+
+# Manager variables
+var control_mode: int = CONTROL_MODE_KEYBOARD
 
 func _init() -> void:
 	pause_mode = PAUSE_MODE_PROCESS
@@ -39,6 +52,11 @@ func _init() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
+	
+	if event is InputEventKey or event is InputEventMouse:
+		control_mode = CONTROL_MODE_KEYBOARD
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		control_mode = CONTROL_MODE_CONTROLLER
 
 ################ Manager Functions ################
 
@@ -46,10 +64,11 @@ func goto_map():
 	get_tree().change_scene(MAP)
 
 func goto_island(island: String):
-	var ship = get_tree().get_nodes_in_group("player_ship").front()
+	var ship = get_tree().get_nodes_in_group("player").front()
 	if ship:
 		ship_position = ship.position
-	get_tree().change_scene(ISLANDS.get(island))
+	if ISLANDS.has(island):
+		get_tree().change_scene(ISLANDS[island])
 
 func set_inventory(value: Dictionary):
 	inventory = value

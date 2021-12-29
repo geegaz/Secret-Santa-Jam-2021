@@ -10,6 +10,10 @@ var screenshake_dir: Vector2 = Vector2.ZERO
 
 var max_screenshake_time: float
 
+func _ready() -> void:
+	if _Target:
+		position = _Target.position
+
 func _process(delta):
 	if _Target:
 		position = _Target.position

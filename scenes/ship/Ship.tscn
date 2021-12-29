@@ -50,14 +50,17 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Ship" type="KinematicBody2D" groups=["player_ship"]]
+[node name="Ship" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 10 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 32, 32 )
 transparent_bg = true
+usage = 3
+render_target_update_mode = 3
 
 [node name="BoatMesh" type="MeshInstance" parent="Viewport"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 material_override = ExtResource( 2 )
 mesh = ExtResource( 4 )
 material/0 = null
@@ -89,6 +92,7 @@ material = ExtResource( 3 )
 z_index = -1
 emitting = false
 randomness = 0.5
+visibility_rect = Rect2( -0.92808, -0.744847, 1.69296, 1.71894 )
 local_coords = false
 process_material = ExtResource( 1 )
 texture = ExtResource( 9 )
@@ -102,6 +106,7 @@ position = Vector2( -8, -2 )
 z_index = 1
 emitting = false
 amount = 20
+visibility_rect = Rect2( -0.956321, -5.83091, 8.95632, 15.8309 )
 local_coords = false
 process_material = ExtResource( 7 )
 texture = ExtResource( 11 )
