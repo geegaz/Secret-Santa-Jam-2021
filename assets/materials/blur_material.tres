@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float blur_amount : hint_range(0.0, 10.0);
+uniform vec4 panel_color : hint_color = vec4(1.0);
+uniform float panel_participation : hint_range(0.0,1.0);
+
+void fragment() {
+	vec4 col = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
+	COLOR = mix(col, panel_color, panel_participation);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/blur_amount = 3.0
+shader_param/panel_color = Color( 0, 0, 0, 1 )
+shader_param/panel_participation = 0.5

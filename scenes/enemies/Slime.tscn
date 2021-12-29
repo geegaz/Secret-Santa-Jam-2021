@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/enemies/Slime.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/Slime-Sheet.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/materials/particle_animation_material.tres" type="Material" id=4]
 [ext_resource path="res://assets/sprites/slime_particles.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/UI.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/shadow.png" type="Texture" id=7]
 
 [sub_resource type="ParticlesMaterial" id=39]
 flag_disable_z = true
@@ -431,6 +432,7 @@ material = ExtResource( 4 )
 position = Vector2( 0, -6 )
 emitting = false
 lifetime = 0.8
+visibility_rect = Rect2( -0.197379, -0.306475, 1.09549, 6.30648 )
 local_coords = false
 process_material = ExtResource( 3 )
 texture = ExtResource( 5 )
@@ -443,9 +445,14 @@ amount = 5
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+visibility_rect = Rect2( -16.7246, -5.43256, 36.1585, 19.0452 )
 local_coords = false
 process_material = SubResource( 39 )
 texture = ExtResource( 5 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0, -5 )
+texture = ExtResource( 7 )
 
 [node name="SlimeSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
