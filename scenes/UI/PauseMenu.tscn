@@ -58,11 +58,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="Button" parent="Pause/Buttons"]
+[node name="Quit" type="Button" parent="Pause/Buttons"]
 margin_top = 63.0
 margin_right = 140.0
 margin_bottom = 85.0
-text = "Back to menu"
+text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }

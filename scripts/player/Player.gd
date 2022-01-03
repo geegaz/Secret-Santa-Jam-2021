@@ -117,7 +117,7 @@ func heal(value: float):
 		_HealthBar.add_health(value)
 
 func die():
-	pass
+	get_tree().reload_current_scene()
 
 
 func _on_AttackHitbox_body_entered(body):

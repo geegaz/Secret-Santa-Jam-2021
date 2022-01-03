@@ -60,6 +60,12 @@ func _input(event: InputEvent) -> void:
 
 ################ Manager Functions ################
 
+func quit():
+	if OS.has_feature("HTML5"):
+		OS.window_fullscreen = false
+	else:
+		get_tree().quit()
+
 func goto_map():
 	get_tree().change_scene(MAP)
 

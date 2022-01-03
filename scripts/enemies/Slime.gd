@@ -36,7 +36,7 @@ func _physics_process(delta):
 		_DetectCast.cast_to = target_direction * detect_distance
 		can_see_target = (_DetectCast.get_collider() == _Target)
 		# Test if can hurt player
-		if can_see_target and target_distance < 8:
+		if can_see_target and (target_distance * scale.length()) < 10:
 			_Target.hurt(damage, target_direction)
 	
 	var target_velocity: Vector2 = Vector2.ZERO
@@ -61,6 +61,8 @@ func damage(value: float, dir: Vector2):
 	health -= value
 	if health > 0:
 		var last_state: String = _StateMachine.get_current_node()
+		if last_state == "hurt":
+			last_state = "chase"
 		_StateMachine.start("hurt")
 		
 		_DamageTimer.start()

@@ -4,7 +4,7 @@ onready var _Buttons = {
 	"continue": $Pause/Buttons/Continue,
 	"options": $Pause/Buttons/Options,
 	"options-back": $Options/Label/Back,
-	"menu": $Pause/Buttons/Menu
+	"quit": $Pause/Buttons/Quit
 }
 onready var _Pause = $Pause
 onready var _Options = $Options
@@ -21,6 +21,7 @@ func _ready():
 	_Buttons["continue"].connect("pressed",self,"pause",[false])
 	_Buttons["options"].connect("pressed",self,"change_menu_to",[_Options])
 	_Buttons["options-back"].connect("pressed",self,"change_menu_to",[_Pause])
+	_Buttons["quit"].connect("pressed",GameManager,"quit")
 
 func _input(event):
 	if event.is_action_pressed("control_pause") and current_menu == _Pause:
